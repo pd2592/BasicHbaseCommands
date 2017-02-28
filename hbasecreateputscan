@@ -1,0 +1,27 @@
+start-hbase.sh
+hbase shell
+ 
+create 'clicks', {NAME=>'hits', VERSIONS=>5}
+
+list
+
+put 'clicks','10.176.224.107','hits:time','06:38:54'
+put 'clicks','10.176.224.107','hits:time','07:58:14'
+put 'clicks','10.176.224.107','hits:time','13:28:19'
+put 'clicks','10.176.224.107','hits:time','08:58:51'
+put 'clicks','10.176.224.107','hits:time','02:58:14'
+put 'clicks','123.176.224.106','hits:time','19:58:14'
+put 'clicks','123.176.224.106','hits:time','16:38:34'
+
+
+scan 'clicks',{COLUMN=>'hits:time',VERSIONS=>1}
+scan 'clicks',{COLUMN=>'hits:time',VERSIONS=>2}
+scan 'clicks',{COLUMN=>'hits:time',VERSIONS=>3}
+scan 'clicks',{COLUMN=>'hits:time',VERSIONS=>4}
+scan 'clicks',{COLUMN=>'hits:time',VERSIONS=>5}
+
+alter 'clicks',NAME=>'hits',VERSIONS=>7
+
+put 'clicks','10.176.224.107','hits:time','20:08:54'
+put 'clicks','10.176.224.107','hits:time','05:38:16'
+
